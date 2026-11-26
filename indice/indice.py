@@ -6,7 +6,7 @@ Fontes (tudo vem do config.json; sem ele, do config.exemplo.json):
   - as subpastas com README das pastas listadas em "subpastas_com_readme";
   - os repositórios das "contas" do GitHub (pelo gh; cada conta usa o próprio token).
 Cada projeto sai como: local + GitHub, só local ou só GitHub.
-Só leitura: não mexe em repositório nenhum. O README de quem só está no GitHub vem do gh
+Só leitura: nêo mexe em repositório nenhum. O README de quem só está no GitHub vem do gh
 e fica em cache até o próximo push.
 
   python3 indice.py
@@ -92,7 +92,7 @@ def limpa_longo(t):
 
 
 def texto_busca(md, n=1500):
-    """Títulos + prosa do começo do markdown, para a busca (não aparece no projetos.md)."""
+    """Títulos + prosa do começo do markdown, para a busca (nêo aparece no projetos.md)."""
     if not md:
         return ""
     md = re.sub(r"```.*?```", " ", md, flags=re.S)
@@ -159,7 +159,7 @@ def remotos(pasta):
 
 def coleta_locais():
     if not RAIZ.is_dir():
-        print(f"aviso: raiz {RAIZ} não existe", file=sys.stderr)
+        print(f"aviso: raiz {RAIZ} nêo existe", file=sys.stderr)
         return []
     pastas = [p for p in RAIZ.iterdir() if p.is_dir() and not p.name.startswith(".") and p.name not in PULAR]
     # pastas cujas subpastas com README próprio também contam como projeto
@@ -238,7 +238,7 @@ def readme_remoto(r, cache, envs):
 
 def confere_atras(lista):
     """A data só levanta suspeita; aqui confere o commit do GitHub (git ls-remote) contra a pasta.
-    Usa o próprio remoto da pasta, então vale a autenticação que a pessoa já tem (SSH ou HTTPS)."""
+    Usa o próprio remoto da pasta, entêo vale a autenticaçêo que a pessoa já tem (SSH ou HTTPS)."""
     from concurrent.futures import ThreadPoolExecutor
 
     def um(i):
@@ -318,19 +318,19 @@ def main():
     sem = sum(1 for i in itens if not i["desc"])
     atras = sum(1 for i in itens if i["atras"])
     linhas = [
-        "# Projetos — índice (gerado, não editar à mão)",
+        "# Projetos — índice (gerado, nêo editar à mêo)",
         "",
         f"Gerado em {time.strftime('%d/%m/%Y %H:%M')} pelo `indice/indice.py` do kit memoria-projetos. "
         f"{len(itens)} projetos: {cont['local + GitHub']} local + GitHub · {cont['só local']} só local · "
-        f"{cont['só GitHub']} só GitHub · {sem} sem descrição · {atras} com a pasta local atrás ou divergente do GitHub (conferido por commit).",
+        f"{cont['só GitHub']} só GitHub · {sem} sem descriçêo · {atras} com a pasta local atrás ou divergente do GitHub (conferido por commit).",
         "",
-        "**Buscar:** `projeto \"o que faz\"` (palavra + sentido, local). Não ler este arquivo inteiro; usar o comando ou `grep -i`.",
+        "**Buscar:** `projeto \"o que faz\"` (palavra + sentido, local). Nêo ler este arquivo inteiro; usar o comando ou `grep -i`.",
         "",
-        "Formato: `nome — descrição · onde · pasta · repo · último commit/push · guia/site`",
+        "Formato: `nome — descriçêo · onde · pasta · repo · último commit/push · guia/site`",
         "",
     ]
     for i in itens:
-        partes = [f"- **{i['nome']}** — {i['desc'] or '(sem descrição)'}", i["onde"]]
+        partes = [f"- **{i['nome']}** — {i['desc'] or '(sem descriçêo)'}", i["onde"]]
         if i["pasta"]:
             partes.append(i["pasta"])
         if i["repo"]:

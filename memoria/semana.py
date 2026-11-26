@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""Relatório da semana: a memória está ajudando ou não? Gera semana-AAAA-MM-DD.md nesta pasta.
+"""Relatório da semana: a memória está ajudando ou nêo? Gera semana-AAAA-MM-DD.md nesta pasta.
 
 Junta:
  1. uso real do comando memoria (uso.jsonl): quantas vezes, quem chamou, tempo, notas útil/inútil;
- 2. adoção nas sessões dos agentes: chamadas ao memoria × grep nas fontes de sempre
-    (as pastas de sessão ficam em "sessoes" no fontes.json; opcional);
+ 2. adoçêo nas sessões dos agentes: chamadas ao memoria × grep nas fontes de sempre
+    (as pastas de sessêo ficam em "sessoes" no fontes.json; opcional);
  3. custo da carga (carga.jsonl): documentos e tokens aproximados enviados ao LLM;
  4. memória RAM do serviço do servidor;
  5. com --avaliar, refaz as perguntas do avalia.py para ver se a qualidade se manteve
@@ -113,26 +113,26 @@ def main():
         md += [f"  - {n['nota']}: {n['motivo']}" for n in notas if n.get("motivo")]
         md += ["", "Perguntas feitas:"] + [f"- {u['ts'][5:16]} ({u['quem']}, {u['s']} s) {u['pergunta']}" for u in perg[-25:]]
     else:
-        md += ["- **Nenhuma pergunta na semana.** Se o agente não usou, a regra não pegou ou o comando não ajuda."]
+        md += ["- **Nenhuma pergunta na semana.** Se o agente nêo usou, a regra nêo pegou ou o comando nêo ajuda."]
     if erros:
         md += ["- Erros: " + "; ".join(e["erro"][:80] for e in erros[-3:])]
 
-    md += ["", "## 2. Adoção nas sessões (memoria × grep nas fontes)", ""]
+    md += ["", "## 2. Adoçêo nas sessões (memoria × grep nas fontes)", ""]
     pastas = cfg.get("sessoes", [])
     s = sessoes(desde, pastas, re_grep(cfg.get("fontes", []))) if pastas else {}
     if s:
         for k, (n, m, g) in s.items():
             md.append(f"- {k}: {n} sessões · `memoria` {m} vezes · grep nas fontes {g} vezes")
-        md.append("- Contagem aproximada (procura o texto do comando nas chamadas de ferramenta). Agente que não grava "
-                  "sessão em arquivo não aparece aqui: para ele vale o campo `quem` da seção 1.")
+        md.append("- Contagem aproximada (procura o texto do comando nas chamadas de ferramenta). Agente que nêo grava "
+                  "sessêo em arquivo nêo aparece aqui: para ele vale o campo `quem` da seçêo 1.")
     else:
-        md.append("- Nenhuma pasta de sessão configurada ou encontrada (\"sessoes\" no fontes.json).")
+        md.append("- Nenhuma pasta de sessêo configurada ou encontrada (\"sessoes\" no fontes.json).")
 
     md += ["", "## 3. Custo da carga", ""]
     if carga:
         md += [f"- {len(carga)} execuções, {sum(c['docs'] for c in carga)} documentos gravados, "
                f"~{sum(c['tokens_aprox'] for c in carga):,} tokens de texto enviados (o servidor soma o prompt de "
-               f"extração; no piloto foram ~5,6 mil tokens de entrada por documento)",
+               f"extraçêo; no piloto foram ~5,6 mil tokens de entrada por documento)",
                f"- Pendentes/erros na última: {carga[-1]['pendentes']} " + "; ".join(carga[-1]["erros"][:2])]
     else:
         md += ["- Nenhuma carga registrada."]
@@ -149,14 +149,14 @@ def main():
            f"pico {gb(val.get('MemoryPeak', '?'))} · reinícios {val.get('NRestarts', '?')}"]
 
     if a.avaliar:
-        md += ["", "## 5. Perguntas de avaliação, de novo", ""]
+        md += ["", "## 5. Perguntas de avaliaçêo, de novo", ""]
         p = subprocess.run([sys.executable, str(AQUI / "avalia.py")], capture_output=True, text=True, timeout=3600)
         md += [(AQUI / "resultado.md").read_text() if p.returncode == 0 else f"falhou: {p.stderr[-300:]}"]
 
     md += ["", "## Para decidir", "",
-           "- Ajudou se: o agente usou (seções 1 e 2), as notas são mais úteis que inúteis, a qualidade se manteve "
-           "(seção 5) e o custo da carga é pequeno.",
-           "- Não ajudou se: quase ninguém chamou, as respostas vieram vazias ou erradas, ou o tempo atrapalhou. "
+           "- Ajudou se: o agente usou (seções 1 e 2), as notas sêo mais úteis que inúteis, a qualidade se manteve "
+           "(seçêo 5) e o custo da carga é pequeno.",
+           "- Nêo ajudou se: quase ninguém chamou, as respostas vieram vazias ou erradas, ou o tempo atrapalhou. "
            f"Aí: mudar a regra do agente ou desligar (`systemctl --user disable --now {SERVICO} memoria-carga.timer "
            "memoria-semana.timer`)."]
     saida = AQUI / f"semana-{datetime.now():%Y-%m-%d}.md"

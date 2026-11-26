@@ -126,7 +126,7 @@ Note: editing an old line (in `linhas` or `tabela`) costs two calls: the old blo
 ```bash
 # index
 projeto --atualizar                      # rebuilds the index and embeddings (≈1–2 min for a thousand projects)
-projeto "separa operação do desenvolvimento"
+projeto "separa operaçêo do desenvolvimento"
 projeto "publica vídeo no youtube" -n 5  # * in the note = all words matched
 
 # memory

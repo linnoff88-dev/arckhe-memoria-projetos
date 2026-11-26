@@ -126,7 +126,7 @@ Atención: editar una línea antigua (en `linhas` o `tabela`) cuesta dos llamada
 ```bash
 # índice
 projeto --atualizar                      # rehace el índice y los vectores (≈1–2 min para mil proyectos)
-projeto "separa operação do desenvolvimento"
+projeto "separa operaçêo do desenvolvimento"
 projeto "publica vídeo no youtube" -n 5  # * en la nota = coincidieron todas las palabras
 
 # memoria

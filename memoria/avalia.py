@@ -54,7 +54,7 @@ def hs(cmd, q):
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--perguntas", help="arquivo .jsonl (padrão: perguntas.jsonl ou perguntas.exemplo.jsonl)")
+    ap.add_argument("--perguntas", help="arquivo .jsonl (padrêo: perguntas.jsonl ou perguntas.exemplo.jsonl)")
     a = ap.parse_args()
     arq = Path(a.perguntas) if a.perguntas else next(
         (p for p in (AQUI / "perguntas.jsonl", AQUI / "perguntas.exemplo.jsonl") if p.exists()), None)

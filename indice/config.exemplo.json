@@ -1,5 +1,5 @@
 {
-  "_leia": "Copie para config.json e ajuste. Caminhos com ~ são aceitos. Caminho relativo = relativo a esta pasta (indice/).",
+  "_leia": "Copie para config.json e ajuste. Caminhos com ~ sêo aceitos. Caminho relativo = relativo a esta pasta (indice/).",
   "raiz": "~/projetos",
   "contas": ["sua-conta-github"],
   "subpastas_com_readme": [],

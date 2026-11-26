@@ -10,12 +10,12 @@ As fontes ficam no fontes.json (veja fontes.exemplo.json). Três tipos:
 Se o mesmo document_id voltar com outro conteúdo, o servidor substitui o anterior; conteúdo
 idêntico nem é enviado (o estado guarda um hash de cada documento).
 
-A 1ª execução É a carga inicial: tudo é novo. Cada documento = 1 chamada ao LLM do servidor
+A 1ª execuçêo É a carga inicial: tudo é novo. Cada documento = 1 chamada ao LLM do servidor
 (no piloto, ~5,6 mil tokens de entrada do Haiku por documento; 100 documentos ≈ 8 min ≈ 566 mil
-tokens, pela assinatura). Por isso o teto --max (padrão 25 por execução); o que sobrar vai na próxima.
+tokens, pela assinatura). Por isso o teto --max (padrêo 25 por execuçêo); o que sobrar vai na próxima.
 Para a 1ª carga, rode antes com --simular e depois, se quiser, com --max 200.
 
-Estado em estado-carga.json; cada execução vira uma linha em carga.jsonl (base do relatório da semana).
+Estado em estado-carga.json; cada execuçêo vira uma linha em carga.jsonl (base do relatório da semana).
 
   python3 carga.py --simular          # só mostra o que seria gravado
   python3 carga.py [--max 25]
@@ -46,7 +46,7 @@ def h(t):
 def linhas_uteis(fonte):
     arq = fonte["_caminho"]
     if not arq.exists():
-        print(f"aviso: {arq} não existe (fonte {fonte['nome']})", file=sys.stderr)
+        print(f"aviso: {arq} nêo existe (fonte {fonte['nome']})", file=sys.stderr)
         return []
     brutas = [l.strip() for l in arq.read_text(errors="ignore").splitlines()]
     out = []
@@ -97,7 +97,7 @@ def tipo_mem(texto):
 def docs_de_pasta(fonte, est):
     pasta = fonte["_caminho"]
     if not pasta.is_dir():
-        print(f"aviso: pasta {pasta} não existe (fonte {fonte['nome']})", file=sys.stderr)
+        print(f"aviso: pasta {pasta} nêo existe (fonte {fonte['nome']})", file=sys.stderr)
         return []
     ignorar = set(fonte.get("ignorar", []))
     padrao = "**/*.md" if fonte.get("recursivo") else "*.md"
@@ -121,9 +121,9 @@ def docs_de_pasta(fonte, est):
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--max", type=int, default=25, help="teto de documentos por execução (padrão 25)")
-    ap.add_argument("--simular", action="store_true", help="só mostra o que seria gravado (não envia nada)")
-    ap.add_argument("--fontes", help="outro arquivo de fontes (padrão: fontes.json)")
+    ap.add_argument("--max", type=int, default=25, help="teto de documentos por execuçêo (padrêo 25)")
+    ap.add_argument("--simular", action="store_true", help="só mostra o que seria gravado (nêo envia nada)")
+    ap.add_argument("--fontes", help="outro arquivo de fontes (padrêo: fontes.json)")
     a = ap.parse_args()
     fontes = carregar_fontes(a.fontes)
     est = json.loads(ESTADO.read_text()) if ESTADO.exists() else {}
@@ -145,12 +145,12 @@ def main():
     fila, sobra = docs[:a.max], len(docs) - min(len(docs), a.max)
     print(("1ª carga (sem estado ainda). " if primeira else "")
           + f"{len(docs)} documento(s) novo(s)/alterado(s); {'seriam gravados' if a.simular else 'gravando'} {len(fila)}"
-          + (f", {sobra} ficam para a próxima execução" if sobra else "") + f" · banco {BANCO}")
+          + (f", {sobra} ficam para a próxima execuçêo" if sobra else "") + f" · banco {BANCO}")
     if a.simular:
         for d in fila:
             print(f" - {d['did']}  ({len(d['item']['content'])} car., tag {d['item']['tags'][0]})")
         print(f"estimativa: ~{len(fila) * 5600:,} tokens de entrada do LLM (≈5,6 mil por documento, medido no piloto)")
-        return  # não grava estado nenhum
+        return  # nêo grava estado nenhum
     t0, ok, erros, chars = time.time(), 0, [], 0
     for d in fila:
         try:

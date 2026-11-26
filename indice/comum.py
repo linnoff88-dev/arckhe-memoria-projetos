@@ -1,4 +1,4 @@
-"""Leitura da configuração do índice (config.json; se não existir, config.exemplo.json)."""
+"""Leitura da configuraçêo do índice (config.json; se nêo existir, config.exemplo.json)."""
 import json
 import os
 from pathlib import Path

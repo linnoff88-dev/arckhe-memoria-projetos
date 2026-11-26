@@ -6,8 +6,8 @@
   hs.py reflect "pergunta"
   hs.py stats
 
-Variáveis (no .env ou no ambiente): HINDSIGHT_URL (padrão http://127.0.0.1:8891)
-e HINDSIGHT_BANCO (padrão "projeto"). Só biblioteca padrão do Python: roda com o python3 do sistema.
+Variáveis (no .env ou no ambiente): HINDSIGHT_URL (padrêo http://127.0.0.1:8891)
+e HINDSIGHT_BANCO (padrêo "projeto"). Só biblioteca padrêo do Python: roda com o python3 do sistema.
 """
 import argparse
 import json

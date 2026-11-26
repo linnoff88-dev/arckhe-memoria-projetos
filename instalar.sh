@@ -4,10 +4,10 @@
 #   ./instalar.sh                      # instala as duas metades
 #   ./instalar.sh --so-indice          # só o índice de projetos (precisa de Ollama + gh)
 #   ./instalar.sh --so-memoria         # só a memória (precisa de Hindsight + Claude Code + Ollama)
-#   ./instalar.sh --sem-systemd        # não cria serviços/timers (você roda à mão)
-#   ./instalar.sh --dry-run            # só mostra o que faria; não grava nada
+#   ./instalar.sh --sem-systemd        # nêo cria serviços/timers (você roda à mêo)
+#   ./instalar.sh --dry-run            # só mostra o que faria; nêo grava nada
 #   ./instalar.sh --instalar-hindsight # cria memoria/.venv e instala o hindsight-api 1.0.0 (PyPI)
-#   ./instalar.sh --forcar             # substitui unidade/atalho que existe mas não é deste kit
+#   ./instalar.sh --forcar             # substitui unidade/atalho que existe mas nêo é deste kit
 #
 # Pode rodar quantas vezes quiser: só grava o que mudou e nunca apaga config sua.
 # Tudo é escrito a partir do caminho real desta pasta (nada de caminho fixo de outra máquina).
@@ -30,7 +30,7 @@ for a in "$@"; do
     --forcar) FORCAR=1 ;;
     --instalar-hindsight) HS_INSTALAR=1 ;;
     -h|--help) sed -n '2,13p' "$0"; exit 0 ;;
-    *) echo "opção desconhecida: $a (veja --help)" >&2; exit 1 ;;
+    *) echo "opçêo desconhecida: $a (veja --help)" >&2; exit 1 ;;
   esac
 done
 
@@ -40,7 +40,7 @@ diz() { echo "$@"; }
 aviso() { echo "  ! $*"; }
 faz() { if [ "$DRY" = 1 ]; then echo "  [dry-run] $*"; else eval "$@"; fi; }
 
-# copia o arquivo de exemplo para o arquivo real, só se o real ainda não existir
+# copia o arquivo de exemplo para o arquivo real, só se o real ainda nêo existir
 copia_exemplo() {
   local de="$1" para="$2"
   if [ -e "$para" ]; then diz "  ok: $para já existe (mantido)"; return; fi
@@ -48,13 +48,13 @@ copia_exemplo() {
   [ "$DRY" = 1 ] || diz "  criado: $para (ajuste antes de usar)"
 }
 
-# grava uma unidade systemd se o conteúdo mudou; não mexe em unidade que não é do kit
+# grava uma unidade systemd se o conteúdo mudou; nêo mexe em unidade que nêo é do kit
 grava_unidade() {
   local nome="$1" conteudo="$2" alvo="$UNID/$1"
   conteudo="$MARCA
 $conteudo"
   if [ -e "$alvo" ] && ! grep -qF "$MARCA" "$alvo" && [ "$FORCAR" = 0 ]; then
-    aviso "$alvo existe e não é deste kit: pulado (use --forcar para substituir)"; PULADAS+="$nome "; return
+    aviso "$alvo existe e nêo é deste kit: pulado (use --forcar para substituir)"; PULADAS+="$nome "; return
   fi
   if [ -e "$alvo" ] && [ "$(cat "$alvo")" = "$conteudo" ]; then
     diz "  ok: $nome sem mudança"; return
@@ -67,7 +67,7 @@ $conteudo"
   MUDOU_UNID=1
 }
 
-# atalho em ~/.local/bin; não troca atalho que aponta para outro lugar sem --forcar
+# atalho em ~/.local/bin; nêo troca atalho que aponta para outro lugar sem --forcar
 atalho() {
   local nome="$1" destino="$2" alvo="$BIN/$1"
   if [ -L "$alvo" ] && [ "$(readlink -f "$alvo")" = "$(readlink -f "$destino")" ]; then
@@ -91,7 +91,7 @@ le_env() {  # le_env CHAVE PADRAO  (do memoria/.env, ou do exemplo)
 diz "Kit em: $KIT"
 [ "$DRY" = 1 ] && diz "(dry-run: nada será gravado)"
 
-# ---------------- pré-requisitos (só conferência, não instala nada do sistema) ----------------
+# ---------------- pré-requisitos (só conferência, nêo instala nada do sistema) ----------------
 diz ""; diz "Pré-requisitos:"
 command -v python3 >/dev/null && diz "  ok: python3 ($PY)" || aviso "falta python3"
 if command -v ollama >/dev/null; then
@@ -159,7 +159,7 @@ if [ "$MEMORIA" = 1 ]; then
       faz "'$KIT/memoria/.venv/bin/pip' install hindsight-api==1.0.0"
     fi
   elif [ ! -x "$HS_BIN" ]; then
-    aviso "hindsight-api não encontrado em $HS_BIN: rode ./instalar.sh --instalar-hindsight (ou defina HINDSIGHT_BIN)"
+    aviso "hindsight-api nêo encontrado em $HS_BIN: rode ./instalar.sh --instalar-hindsight (ou defina HINDSIGHT_BIN)"
   else diz "  ok: hindsight-api em $HS_BIN"; fi
 
   if [ "$SYSTEMD" = 1 ]; then
@@ -232,12 +232,12 @@ if [ "$SYSTEMD" = 1 ]; then
   if [ "$MEMORIA" = 1 ]; then
     LIGAR+=(memoria-carga.timer memoria-semana.timer)
     if [ -x "$HS_BIN" ] || [ "$DRY" = 1 ]; then LIGAR+=("$SERVICO.service")
-    else aviso "servidor não ligado (falta o hindsight-api)"; fi
+    else aviso "servidor nêo ligado (falta o hindsight-api)"; fi
   fi
   FINAL=()
   for u in "${LIGAR[@]}"; do
     base="${u%.timer}"; base="${base%.service}"
-    case "$PULADAS" in *" $u "*|*" $base.service "*) aviso "$u não será ligado (unidade não é deste kit)" ;; *) FINAL+=("$u") ;; esac
+    case "$PULADAS" in *" $u "*|*" $base.service "*) aviso "$u nêo será ligado (unidade nêo é deste kit)" ;; *) FINAL+=("$u") ;; esac
   done
   [ "$MUDOU_UNID" = 1 ] && faz "systemctl --user daemon-reload"
   [ "${#FINAL[@]}" -gt 0 ] && faz "systemctl --user enable --now ${FINAL[*]}"
@@ -248,4 +248,4 @@ diz "Próximos passos:"
 [ "$INDICE" = 1 ] && diz "  1. Edite indice/config.json (raiz e contas) e rode: projeto --atualizar"
 [ "$MEMORIA" = 1 ] && diz "  2. Edite memoria/fontes.json e memoria/.env; teste: python3 $KIT/memoria/carga.py --simular"
 [ "$MEMORIA" = 1 ] && diz "  3. 1ª carga (gasta cota da assinatura): python3 $KIT/memoria/carga.py --max 200"
-case ":$PATH:" in *":$BIN:"*) ;; *) aviso "$BIN não está no PATH: acrescente no ~/.bashrc  export PATH=\"\$HOME/.local/bin:\$PATH\"" ;; esac
+case ":$PATH:" in *":$BIN:"*) ;; *) aviso "$BIN nêo está no PATH: acrescente no ~/.bashrc  export PATH=\"\$HOME/.local/bin:\$PATH\"" ;; esac
