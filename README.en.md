@@ -1,6 +1,6 @@
 # memoria-projetos — find any project and ask what has already been decided
 
-[![Project Memory](guia/assets/banner-en.jpg)](https://inematds.github.io/memoria-projetos/guia/en/)
+[![Project Memory](guia/assets/banner-en.jpg)](https://linnoff88-dev.github.io/arckhe-/guia/en/)
 
 **🇧🇷 [Português](README.md) · 🇺🇸 [English](README.en.md) · 🇪🇸 [Español](README.es.md)**
 
@@ -10,7 +10,7 @@ memoria-projetos is a toolkit for people with many projects who work with AI age
 
 ## 📖 User guide
 
-Full guide (landing page + walkthrough): **https://inematds.github.io/memoria-projetos/guia/en/**
+Full guide (landing page + walkthrough): **https://linnoff88-dev.github.io/arckhe-/guia/en/**
 
 ## The two halves
 
@@ -45,7 +45,7 @@ Install and check these first (`instalar.sh` only checks; it does not install an
 ## Installation
 
 ```bash
-git clone https://github.com/inematds/memoria-projetos.git
+git clone https://github.com/linnoff88-dev/memoria-projetos.git
 cd memoria-projetos
 ./instalar.sh --dry-run                 # shows everything it would do without writing anything
 ./instalar.sh --instalar-hindsight      # installs both halves + the Hindsight server
@@ -183,9 +183,9 @@ Do not put the memory answer at the start of every session: the agent asks when 
 ## Credits
 
 - Memory uses **Hindsight**, by vectorize-io, MIT license: https://github.com/vectorize-io/hindsight
-- Portuguese mirror and guide: https://github.com/inematds/hindsight · https://inematds.github.io/hindsight/guia/
+- Portuguese mirror and guide: https://github.com/linnoff88-dev/hindsight · https://linnoff88-dev.github.io/arckhe-/guia/
 - Embeddings: `bge-m3` model (BAAI) served by Ollama.
 
 ## License
 
-MIT — see [LICENSE](LICENSE). © 2026 INEMA.
+MIT — see [LICENSE](LICENSE). © 2026 ARCKHÉ.

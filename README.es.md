@@ -1,6 +1,6 @@
 # memoria-projetos — encuentra cualquier proyecto y consulta lo que ya se decidió
 
-[![Memoria de Proyectos](guia/assets/banner-es.jpg)](https://inematds.github.io/memoria-projetos/guia/es/)
+[![Memoria de Proyectos](guia/assets/banner-es.jpg)](https://linnoff88-dev.github.io/arckhe-/guia/es/)
 
 **🇧🇷 [Português](README.md) · 🇺🇸 [English](README.en.md) · 🇪🇸 [Español](README.es.md)**
 
@@ -10,7 +10,7 @@ memoria-projetos es un kit para quienes tienen muchos proyectos y trabajan con a
 
 ## 📖 Guía de uso
 
-Guía completa (landing + paso a paso): **https://inematds.github.io/memoria-projetos/guia/es/**
+Guía completa (landing + paso a paso): **https://linnoff88-dev.github.io/arckhe-/guia/es/**
 
 ## Las dos partes
 
@@ -45,7 +45,7 @@ Instala y verifica lo siguiente antes (el `instalar.sh` solo verifica; no instal
 ## Instalación
 
 ```bash
-git clone https://github.com/inematds/memoria-projetos.git
+git clone https://github.com/linnoff88-dev/memoria-projetos.git
 cd memoria-projetos
 ./instalar.sh --dry-run                 # muestra todo lo que haría, sin escribir nada
 ./instalar.sh --instalar-hindsight      # instala las dos partes y el servidor Hindsight
@@ -183,9 +183,9 @@ No pongas la respuesta de la memoria al comienzo de cada sesión: el agente cons
 ## Créditos
 
 - La memoria usa **Hindsight**, de vectorize-io, con licencia MIT: https://github.com/vectorize-io/hindsight
-- Espejo y guía en portugués: https://github.com/inematds/hindsight · https://inematds.github.io/hindsight/guia/
+- Espejo y guía en portugués: https://github.com/linnoff88-dev/hindsight · https://linnoff88-dev.github.io/arckhe-/guia/
 - Vectores: modelo `bge-m3` (BAAI) servido por Ollama.
 
 ## Licencia
 
-MIT — consulta [LICENSE](LICENSE). © 2026 INEMA.
+MIT — consulta [LICENSE](LICENSE). © 2026 ARCKHÉ.

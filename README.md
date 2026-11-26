@@ -6,7 +6,7 @@
 </div>
 
 
-[![MemêÂ³ria de Projetos](guia/assets/banner.jpg)](https://inematds.github.io/memoria-projetos/guia/)
+[![MemêÂ³ria de Projetos](guia/assets/banner.jpg)](https://linnoff88-dev.github.io/arckhe-/guia/)
 
 **ê°Å¸â¡Â§ê°Å¸â¡Â· [PortuguêÂªs](README.md) êÂ· ê°Å¸â¡Âºê°Å¸â¡Â¸ [English](README.en.md) êÂ· ê°Å¸â¡Âªê°Å¸â¡Â¸ [EspaêÂ±ol](README.es.md)**
 
@@ -16,7 +16,7 @@ O memoria-projetos êÂ© um kit para quem tem muitos projetos e trabalha com 
 
 ## ê°Å¸ââ Guia de uso
 
-Guia completo (landing + passo a passo): **https://inematds.github.io/memoria-projetos/guia/**
+Guia completo (landing + passo a passo): **https://linnoff88-dev.github.io/arckhe-/guia/**
 
 ## As duas metades
 
@@ -51,7 +51,7 @@ Instale e confira antes (o `instalar.sh` sêÂ³ confere, nêÂ£o instala n
 ## InstalaêÂ§êÂ£o
 
 ```bash
-git clone https://github.com/inematds/memoria-projetos.git
+git clone https://github.com/linnoff88-dev/memoria-projetos.git
 cd memoria-projetos
 ./instalar.sh --dry-run                 # mostra tudo o que faria, sem gravar nada
 ./instalar.sh --instalar-hindsight      # instala as duas metades + o servidor Hindsight
@@ -189,12 +189,12 @@ NêÂ£o coloque a resposta da memêÂ³ria no inêÂ­cio de toda sessê�
 ## CrêÂ©ditos
 
 - A memêÂ³ria usa o **Hindsight**, da vectorize-io, licenêÂ§a MIT: https://github.com/vectorize-io/hindsight
-- Espelho e guia em portuguêÂªs: https://github.com/inematds/hindsight êÂ· https://inematds.github.io/hindsight/guia/
+- Espelho e guia em portuguêÂªs: https://github.com/linnoff88-dev/hindsight êÂ· https://linnoff88-dev.github.io/arckhe-/guia/
 - Vetores: modelo `bge-m3` (BAAI) servido pelo Ollama.
 
 ## LicenêÂ§a
 
-MIT ê¢â¬â veja [LICENSE](LICENSE). êÂ© 2026 INEMA.
+MIT ê¢â¬â veja [LICENSE](LICENSE). êÂ© 2026 ARCKHÉ.
 
 ---
 
